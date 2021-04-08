@@ -9,7 +9,7 @@ let maxword = 30;
 let printResult = true;
 
 //---------------代码区-----------------
-//---------接下来的您不需要理解----------
+//---------接下来的您不需要关心----------
 //-----------配置区-------------
 //输入框css选择符
 let inputSelector = 'textarea';
@@ -94,16 +94,22 @@ if (e > c) { //英文为主文本
 
 
 let currindex = 0;
-let _input = document.querySelector(inputSelector);
-let btn = document.querySelector(sendSelector);
+const _input = document.querySelector(inputSelector);
+const btn = document.querySelector(sendSelector);
+const inputEvent = document.createEvent('Event');
+
+inputEvent.initEvent('input', true, true);
+
 let next = function(){
   if(currindex < ss.length){
     _input.value = ss[currindex++];
+    _input.dispatchEvent(inputEvent);
   }
 }
 let pre = function(){
   if(currindex > 0){
     _input.value = ss[--currindex];
+    _input.dispatchEvent(inputEvent);
   }
 }
 let inputHandler = function(e){
